@@ -1,0 +1,31 @@
+<script>
+    "use strict"
+    //定义一个计算机函数 calc
+    //传入员工姓名
+    //传入不确定个数的薪资组成部分
+    //计算这个员工的总工资
+
+    /*
+    function calc(name) {
+        var sum = 0;
+        for (var i = 1; i < arguments.length; i++) {
+            sum += Number(arguments[i]);
+        }
+        return { name, sum };
+    }
+    result = calc('li', '5000', '24542542', '24542');
+    console.log(result);*/
+    /*
+    打印结果{name: "li", sum: 24572084}
+    问题：
+    1.不能使用严格模式
+    2.grguments不能使用数组家API
+    */
+
+    //2.
+    function cale(name, ...arr) {
+        //...arr仅收集出ename之外的剩余参数
+        return arr.reduce((prev, elem) => Number(prev) + Number(elem));
+    }
+    console.log(cale('lilei', '2452', '24542524'));
+</script>

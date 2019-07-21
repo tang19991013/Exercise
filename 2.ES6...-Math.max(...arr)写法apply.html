@@ -1,0 +1,31 @@
+<script>
+    "use strict"
+    let nums = [1, 2, 6, 88, 9]
+    console.log(Math.max(3, 6, 8, 0, 2))//7;
+    console.log(Math.min(3, 6, 8, 0, 2))//0;
+    //Math.max不支持数组
+    //1使用apply
+    console.log(Math.max.apply(null, nums));//apply打散数组
+    console.log(Math.min.apply(null, nums));//apply打散数组
+    /*
+        打散数组后 是这样的->
+        Math.max.apply(null,1,2,6,88,9);
+        Math.min.apply(null,1,2,6,88,9);
+    */
+
+    //ES6写法 使用 对象扩展运算符
+    console.log(Math.max(...nums));//88
+    console.log(Math.min(...nums));//88
+    /*
+        Math.max(...nums);使用对象扩展运算符
+        运行时 是这样的->
+         Math.max(1,2,6,88,9)
+         Math.min(1,2,6,88,9)
+    */
+
+    /*
+    总结：
+    1.如果在定义函数数，形参 列表中 ...arr，是收集剩余参数保存的数组的意思
+    2.如果在调用函数时，在实参列表中 ...arr，作用是相反的，是打散数组为单个值，在传入
+    */
+</script>
