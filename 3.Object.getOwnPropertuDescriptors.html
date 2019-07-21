@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var person = {
+            name: '张三',
+            age: 18
+        }
+        var desc = Object.getOwnPropertyDescriptors(person, 'name');
+        console.log(desc);
+        /* desc打印结果
+        age:{
+            configurable: true,
+            enumerable: true,
+            value: 18,
+            writable: true
+        },
+        name:{
+            configurable: true,
+            enumerable: true,
+            value: '张三',
+            writable: true
+        }
+        */
+
+        /*
+        功能:
+         所指定对象的所有自身属性的描述符，如果没有任何自身属性，则返回空对象。
+
+        语法: Object.getOwnPropertyDescriptors(obj)
+         obj: 需要查找的目标对象
+        */
+    </script>
+</body>
+
+</html>
