@@ -1,2 +1,1 @@
-# vuexxm
-vue框架写的项目
+# Exercise
