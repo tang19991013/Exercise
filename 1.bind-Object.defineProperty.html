@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inpus">
+    <span id='spans'></span>
+    <script>
+        "use strict"
+        var $id = (elem) => { return document.getElementById(elem) }
+        var inputs = $id('inpus');
+        var spans = $id('spans');
+        let Value = {}
+        Object.defineProperty(Value, 'key', {
+            get: () => {
+                console.log('你是不是来获取值了')
+                return this.key //读取值触发 this.value存放地 可写为Value.value
+            },
+            set: (value) => {
+                console.log('你是不是来修改值了', value)
+                this.key = value; //修改值触发  this.value存放地 可写为Value.value
+                //每次修改页面is为spans的标签也会修改
+                spans.innerHTML = this.key;
+            }
+        })
+        inputs.addEventListener('input', function (e) {
+            //e.data当前输入的值
+            //this.value,e.target.value 获取值
+            Value.key = e.target.value;
+        })
+    </script>
+</body>
+
+</html>

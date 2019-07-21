@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="inpus">
+    <span id='spans'></span>
+    <br>
+    <span id='spanA'></span>
+    <script>
+        "use strict"
+        var $id = (elem) => { return document.getElementById(elem) }
+        var inputs = $id('inpus');
+        var spans = $id('spans');
+        var spanA = $id('spanA')
+        console.log(inputs, spans);
+        var Value = {};
+        /* Object.defineProperties(obj,{})
+        功能:
+            方法直接在一个对象上定义一个或多个新的属性或修改现有属性，并返回该对象。
+        */
+        Object.defineProperties(Value, {
+            Value: {
+                value: "",//实际存储值
+                writable: false,
+                //能否修改属性的值，如果直接使用字面量定义对象，默认值为true
+                enumerable: false,
+                //表示该属性是否可枚举，即是否通过for-in循环或Object.keys()返回属性,如果直接使用字面量定义对象，默认值为true
+                configurable: false,
+                //表示能否通过delete删除此属性，能否修改属性的特性，或能否修改把属性修改为访问器属性，如果直接使用字面量定义对象，默认值为true
+                extensible: true
+                //不能用.访问到的属性
+            },
+            Value: {
+                get: () => { return this.value },
+                set: (Value) => { this.value = Value; spans.innerHTML = this.value; },
+                enumerable: true,//代替受保护的属性，抛投露面
+                configurable: false//不能删除保镖
+            },
+            Age: {
+                age: 0,
+                writable: false,
+                //能否修改属性的值，如果直接使用字面量定义对象，默认值为true
+                enumerable: false,
+                configurable: false,
+                extensible: true
+            },
+            Age: {
+                get: () => { return this.age },
+                set: (Age) => { this.age = Age, spanA.innerHTML = this.age },
+                enumerable: true,//代替受保护的属性，抛投露面
+                configurable: false//不能删除保镖
+            }
+        });
+        Object.preventExtensions(Value);//设置防扩展
+        Object.seal(Value);//密封对象
+        inputs.addEventListener('input', function (e) {
+            //e.data当前输入的值
+            //this.value,e.target.value 获取值
+            Value.Value = e.target.value;
+            Value.Age = e.data;
+        })
+    </script>
+</body>
+
+</html>
