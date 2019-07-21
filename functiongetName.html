@@ -1,0 +1,49 @@
+<script>
+    function Foo() {
+        getName = function () {
+            console.log(1);
+        };
+        return this;
+    }
+    Foo.getName = function () {
+        console.log(2);
+    }
+    Foo.prototype.getName = function () {
+        console.log(3);
+    }
+    getName = function () {
+        console.log(4);
+    }
+    Foo.getName();//2
+    getName();//4
+    // Foo().getName();//1
+    //调用了Foo() return this->指向window  window.getName()=function{console.log(1)};
+    //Foo()内的 getName覆盖了外部
+    getName();//1
+    Foo.getName();
+    new Foo.getName();//new的语法是new找到离他最近的圆括号 new 函数()
+    new Foo().getName();//3
+    /*== var foos=new Foo();return this->指向正在创建的新的子对象
+    只是重新执行替换getName一次不影响我们找到原型链*/
+    /*
+    解释：
+     new 创建出一个新的函数  New Foo() 调用的是 大写的 Foo() return 的 this->指向的是正在创建的新对象
+     _ _ proto _ _ 继承 Foo.prototyoe.getName=function(){ console.log(3); }
+    */
+    // new new Foo().getName();//3
+
+    new new Foo().getName();//3
+    /*
+        new .新子对象.getName();
+    */
+    //new 没有变量接 用完自动释放
+    //1.声明提前,function(){}整体提前
+    //var 变量=xxx则仅 var 变量提前 =xxx留在原地
+
+    //2.任何函数都是普通的对象，也可添加自己的属性,添加的属性和函数体内的部分，毫无关系
+
+    /*3.任何函数都可以当做构造函数被new调用，
+    且任何函数都有原型对象Prototype属性，
+    只不过，大部分函数不是标准的构造函数内容而已*/
+
+</script>
