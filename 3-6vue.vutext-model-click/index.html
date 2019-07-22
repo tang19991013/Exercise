@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="MVVM">
+        <h2>{{title}}</h2>
+        <input v-model="name">
+        <h1>{{name}}</h1>
+        <button v-on:click="clickMe">click me!</button>
+        <input type="checkbox" v-on:change="handleClick">
+    </div>
+    <script src="js/observer.js"></script>
+    <script src="js/watcher.js"></script>
+    <script src="js/compile.js"></script>
+    <script src="js/index.js"></script>
+    <script type="text/javascript">
+        new SelfVue({
+            el: '#MVVM',
+            data: {
+                title: 'hello world',
+                name: 'canfoo',
+                inputcheckbox: false
+            },
+            methods: {
+                clickMe: function () {
+                    this.title = 'hello world';
+                    console.log(this)
+                },
+                handleClick(e) {
+                    // console.log(e.target.checked)
+                    //e.target.checked当前选中框状态
+                    this.inputcheckbox = e.target.checked;
+                }
+            },//mounted钩子函数触发
+            mounted: function () {
+                window.setTimeout(() => {
+                    console.log(this)
+                    this.title = '你好';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+
+</html>
