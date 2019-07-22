@@ -16,11 +16,11 @@
     }
     Foo.getName();//2
     getName();//4
-    // Foo().getName();//1
+    Foo().getName();//1
     //调用了Foo() return this->指向window  window.getName()=function{console.log(1)};
     //Foo()内的 getName覆盖了外部
     getName();//1
-    Foo.getName();
+    Foo.getName();//2
     new Foo.getName();//new的语法是new找到离他最近的圆括号 new 函数()
     new Foo().getName();//3
     /*== var foos=new Foo();return this->指向正在创建的新的子对象

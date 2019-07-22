@@ -1,0 +1,18 @@
+<script>
+        function after(times,callback){
+                         //times次数
+                         //callback回调函数
+            let school={}//储存对象
+            return (key,value)=>{
+                school[key]=value//如school['uname']='zhangsan'
+                if(--times==0){//利用闭包判断指定次数是否为0
+                    callback(school)//指定次数为零后执行
+                }
+            }
+        }
+        var afters=after(2,(school)=>{
+            console.log(school);
+        });
+            afters('uname','zhangsan');
+            afters('upad','242124242');
+</script>
