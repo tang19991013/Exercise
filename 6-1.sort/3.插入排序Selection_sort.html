@@ -6,24 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        @media screen and(max-width:300px) {
-            div>img {
-                width: 100%;
-            }
-        }
-
-        h1,
-        div {
-            text-align: center;
-        }
-
-        #inner {
-            width: 300px;
-            margin: 0 auto;
-            font-size: 13px;
-        }
-    </style>
+    <link rel="stylesheet" href="animation/corscss.css">
 </head>
 
 <body>
@@ -33,6 +16,7 @@
         </img>
     </div>
     <div id='inner'></div>
+    <script src="animation/addEventListenerResize.js"></script>
     <script>
         let arr = [1, 4524, 5425565436, 242454747, 6764, 234, 14, 254, 53465, 24542542, 42134, 1432]
         let len = arr.length - 0;

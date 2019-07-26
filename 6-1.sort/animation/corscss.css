@@ -1,0 +1,19 @@
+h1,
+div {
+    text-align: center;
+}
+#inner {
+    width: 300px;
+    margin: 0 auto;
+    font-size: 13px;
+}
+@media screen and (max-width:430px) {
+    div>img {
+        width: 100%;
+    }
+    #inner {
+        width: 100%;
+        margin: 0 auto;
+        font-size: 19px;
+    }
+}

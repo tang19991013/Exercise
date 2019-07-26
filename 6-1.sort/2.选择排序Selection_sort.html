@@ -6,25 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        @media screen and(max-width:300px) {
-            div>img {
-                width: 100%;
-            }
-        }
-
-        h1,
-        div {
-            text-align: center;
-        }
-
-
-        #inner {
-            width: 300px;
-            margin: 0 auto;
-            font-size: 13px;
-        }
-    </style>
+    <link rel="stylesheet" href="animation/corscss.css">
 </head>
 
 <body>
@@ -33,48 +15,11 @@
         <img src="animation/选择排序" alt="">
     </div>
     <div id='inner'></div>
-</body>
+    <script src="animation/addEventListenerResize.js"></script>
+    <script>
+        let arr = [1, 4524, 5425565436, 54747, 6764, 234, 14, 254, 53465, 24542542, 42134, 1432]
 
-</html>
-<script>
-    let arr = [1, 4524, 5425565436, 54747, 6764, 234, 14, 254, 53465, 24542542, 42134, 1432]
-
-    const len = arr.length
-    let min;
-    for (let i = 0; i < len - 1; ++i) {
-        min = i /* 初始化未排序序列中最小数据数组下标 */
-        for (let j = i + 1; j < len; ++j) { /* 访问未排序的元素 */
-            if (arr[j] < arr[min]) { /* 找到目前最小值 */
-                min = j /* 记录最小值 */
-            }
-        }
-        [arr[i], arr[min]] = [arr[min], arr[i]] /* 交换位置 */
-    }
-    console.log(arr);
-    // 选择排序(Selection sort)
-    /*
-    选择排序（Selection sort） 是一种简单直观的排序算法。
-
-    选择排序的主要优点与数据移动有关。
-
-    如果某个元素位于正确的最终位置上，则它不会被移动。
-
-    选择排序每次交换一对元素，它们当中至少有一个将被移到其最终位置上，
-    因此对 n 个元素的表进行排序总共进行至多 n - 1 次交换。
-    在所有的完全依靠交换去移动元素的排序方法中，选择排序属于非常好的一种。
-    */
-
-    /*
-    在未排序序列中找到最小（大）元素，存放到排序序列的起始位置；
-
-    然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾；
-
-    以此类推，直到所有元素均排序完毕。
-    */
-    let newArr = [1, 4524, 5425565436, 54747, 6764, 234, 14, 254, 53465, 3653623, 42134, 1432]
-    //封装函数
-    const selectionSort = arr => {
-        const len = arr.length;
+        const len = arr.length
         let min;
         for (let i = 0; i < len - 1; ++i) {
             min = i /* 初始化未排序序列中最小数据数组下标 */
@@ -85,8 +30,46 @@
             }
             [arr[i], arr[min]] = [arr[min], arr[i]] /* 交换位置 */
         }
-        return arr
-    }
-    console.log(selectionSort(newArr))
-    inner.innerHTML = '方法1.<br>' + selectionSort
-</script>
+        console.log(arr);
+        // 选择排序(Selection sort)
+        /*
+        选择排序（Selection sort） 是一种简单直观的排序算法。
+    
+        选择排序的主要优点与数据移动有关。
+    
+        如果某个元素位于正确的最终位置上，则它不会被移动。
+    
+        选择排序每次交换一对元素，它们当中至少有一个将被移到其最终位置上，
+        因此对 n 个元素的表进行排序总共进行至多 n - 1 次交换。
+        在所有的完全依靠交换去移动元素的排序方法中，选择排序属于非常好的一种。
+        */
+
+        /*
+        在未排序序列中找到最小（大）元素，存放到排序序列的起始位置；
+    
+        然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾；
+    
+        以此类推，直到所有元素均排序完毕。
+        */
+        let newArr = [1, 4524, 5425565436, 54747, 6764, 234, 14, 254, 53465, 3653623, 42134, 1432]
+        //封装函数
+        const selectionSort = arr => {
+            const len = arr.length;
+            let min;
+            for (let i = 0; i < len - 1; ++i) {
+                min = i /* 初始化未排序序列中最小数据数组下标 */
+                for (let j = i + 1; j < len; ++j) { /* 访问未排序的元素 */
+                    if (arr[j] < arr[min]) { /* 找到目前最小值 */
+                        min = j /* 记录最小值 */
+                    }
+                }
+                [arr[i], arr[min]] = [arr[min], arr[i]] /* 交换位置 */
+            }
+            return arr
+        }
+        console.log(selectionSort(newArr))
+        inner.innerHTML = '方法1.<br>' + selectionSort
+    </script>
+</body>
+
+</html>
