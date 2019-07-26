@@ -6,9 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        h1,
+        div {
+            text-align: center;
+        }
+
+        #inner {
+            width: 300px;
+            margin: 0 auto;
+            font-size: 13px;
+        }
+    </style>
 </head>
 
 <body>
+    <h1>冒泡排序</h1>
+    <div>
+        <img src="animation/冒泡排序" alt="">
+    </div>
+    <div id='inner'></div>
     <script>
         let arr = [1, 23, 4, 2542, 5425, 425425425, 24542653, 3653653, 12245, 4252451, 24332423]
 
@@ -50,6 +67,7 @@
         }
         //function 调用时 bubbleSort(arr)
         console.log(bubbleSort(newArr))
+        inner.innerHTML = '方法1.<br>' + bubbleSort
     </script>
 </body>
 

@@ -1,49 +1,83 @@
-<script>
-    let arr = [1, 4524, 5425565436, 54747, 6764, 234, 14, 254, 53465, 24542542, 42134, 1432]
-    let len = arr.length;
-    let preIndex, current;
-    for (var i = 1; i < len; i++) {
-        preIndex = i - 1;
-        current = arr[i];
-        while (preIndex >= 0 && arr[preIndex] > current) {
-            arr[preIndex + 1] = arr[preIndex];
-            preIndex--;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h1,
+        div {
+            text-align: center;
         }
-        arr[preIndex + 1] = current;
-    }
-    console.log(arr);
-    //插入排序Selection sort 是一种简单直观的排序算法。
 
-    // 它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。
+        #inner {
+            width: 300px;
+            margin: 0 auto;
+            font-size: 13px;
+        }
+    </style>
+</head>
 
-    /*
-    从第一个元素开始，该元素可以认为已经被排序；
-
-    取出下一个元素，在已经排序的元素序列中从后向前扫描；
-
-    如果该元素（已排序）大于新元素，将该元素移到下一位置；
-
-    重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；
-
-    将新元素插入到该位置后；
-
-    重复步骤2~5。
-    */
-    let newArr = [1, 4524, 5425565436, 54747, 6764, 234, 14, 254, 53465, 3653623, 42134, 1432]
-
-    const insertionSort = arr => {
-        let len = arr.length;
+<body>
+    <h1>插入排序</h1>
+    <div>
+        <img src="animation/插入排序">
+        </img>
+    </div>
+    <div id='inner'></div>
+    <script>
+        let arr = [1, 4524, 5425565436, 242454747, 6764, 234, 14, 254, 53465, 24542542, 42134, 1432]
+        let len = arr.length - 0;
         let preIndex, current;
         for (var i = 1; i < len; i++) {
             preIndex = i - 1;
             current = arr[i];
-            while (preIndex >= 0 && arr[preIndex] > current) {
+            while (preIndex > 0 && arr[preIndex] > current) {
                 arr[preIndex + 1] = arr[preIndex];
                 preIndex--;
             }
             arr[preIndex + 1] = current;
         }
-        return arr;
-    }
-    console.log(insertionSort(newArr))
-</script>
+        console.log(arr);
+        //插入排序Selection sort 是一种简单直观的排序算法。
+
+        // 它的工作原理是通过构建有序序列，对于未排序数据 ，在已排序序列中从后向前扫描，找到相应位置并插入。
+
+        /*
+        从第一个元素开始，该元素可以认为已经被排序；
+    
+        取出下一个元素，在已经排序的元素序列中从后向前扫描；
+    
+        如果该元素（已排序）大于新元素，将该元素移到下一位置；
+    
+        重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；
+    
+        将新元素插入到该位置后；
+    
+        重复步骤2~5。
+        */
+        let newArr = [1, 4524, 5425565436, 54747, 6764, 234, 14, 254, 53465, 3653623, 42134, 1432]
+        const insertionSort = arr => {
+            const len = arr.length - 1
+            var j, temp
+            for (let i = 0; i < len; ++i) {
+                j = i /* 存储当前索引，便于后续与数组其他元素对比 */
+                temp = arr[i + 1]
+
+                while (j + 1 > 0 && arr[j] > temp) {
+                    arr[j + 1] = arr[j]
+                    // arr[i - 1] = arr[i]
+                    j--;
+                }
+                arr[j + 1] = temp
+            }
+            return arr
+        }
+        console.log(insertionSort(newArr))
+        inner.innerHTML = `方法1.<br>${insertionSort}`
+    </script>
+</body>
+
+</html>
