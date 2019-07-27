@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="animation/corscss.css">
+</head>
+
+<body>
+    <h1>希尔排序</h1>
+    <div>
+        <img src="animation/希尔排序.gif" alt=""></br>
+        <img src="animation/希尔排序" alt="">
+    </div>
+    <div id='inner'></div>
+    <script src="animation/addEventListenerResize.js"></script>
+    <script>
+        let arr = [1, 245245555, 425245245245, 425, 5424254252, 52452452452452, 4524524524542, 542542524524, 52654, 6547, 47647, 6587658768, 98769]
+        arr => {
+            let gaps = [5, 2, 1] // 定义步长以及分割次数
+            let len = arr.length
+            for (let g = 0, gLen = gaps.length; g < gaps.length; ++g) {
+                for (let i = gaps[g]; i < len; ++i) {
+                    let j
+                    for (j = i; j >= gaps[g] && arr[j - gaps[g]] > arr[i]; j -= gaps[g]) {
+                        arr[j] = arr[j - gaps[g]]
+                    }
+                    [arr[i], arr[j]] = [arr[j], arr[i]]
+                }
+            }
+            return arr
+        }
+        console.log(arr);
+        /*
+        希尔排序，也称 递减增量排序算法，是 插入排序 的一种更高效的改进版本。希尔排序是非稳定排序算法。
+    
+        希尔排序是基于插入排序的以下两点性质而提出改进方法的：
+    
+        插入排序在对几乎已经排好序的数据操作时，效率高，即可以达到 线性排序 的效率；
+    
+        但插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位。
+    
+        步长的选择是希尔排序的重要部分。
+    
+        只要最终步长为1任何步长序列都可以工作。
+    
+        算法最开始以一定的步长进行排序。
+    
+        然后会继续以一定步长进行排序，最终算法以步长为1进行排序。
+    
+        当步长为1时，算法变为普通插入排序，这就保证了数据一定会被排序。
+        */
+        /*
+        插入排序的算法步骤如下：
+    
+        1.定义一个用来分割的步长；
+    
+        2.按步长的长度K，对数组进行K趟排序；
+    
+        3.不断重复上述步骤。
+        */
+        let newArr = [1, 24522425, 52442, 52654, 6547, 47647, 6587658768, 98769]
+        const shellSort = arr => {
+            let gaps = [5, 2, 1] // 定义步长以及分割次数    
+            let len = arr.length
+            for (let g = 0, gLen = gaps.length; g < gaps.length; ++g) {
+                for (let i = gaps[g]; i < len; ++i) {
+                    let j
+                    for (j = i; j >= gaps[g] && arr[j - gaps[g]] > arr[i];
+                        j -= gaps[g]) { arr[j] = arr[j - gaps[g]] }
+                    [arr[i], arr[j]] = [arr[j], arr[i]]
+                }
+            }
+            return arr
+        }
+        console.log(shellSort(newArr))
+    </script>
+</body>
+
+</html>
