@@ -19,21 +19,7 @@
     <script src="animation/addEventListenerResize.js"></script>
     <script>
         let arr = [1, 245245555, 425245245245, 425, 5424254252, 52452452452452, 4524524524542, 542542524524, 52654, 6547, 47647, 6587658768, 98769]
-        arr => {
-            let gaps = [5, 2, 1] // 定义步长以及分割次数
-            let len = arr.length
-            for (let g = 0, gLen = gaps.length; g < gaps.length; ++g) {
-                for (let i = gaps[g]; i < len; ++i) {
-                    let j
-                    for (j = i; j >= gaps[g] && arr[j - gaps[g]] > arr[i]; j -= gaps[g]) {
-                        arr[j] = arr[j - gaps[g]]
-                    }
-                    [arr[i], arr[j]] = [arr[j], arr[i]]
-                }
-            }
-            return arr
-        }
-        console.log(arr);
+
         /*
         希尔排序，也称 递减增量排序算法，是 插入排序 的一种更高效的改进版本。希尔排序是非稳定排序算法。
     
@@ -63,20 +49,26 @@
         3.不断重复上述步骤。
         */
         let newArr = [1, 24522425, 52442, 52654, 6547, 47647, 6587658768, 98769]
-        const shellSort = arr => {
-            let gaps = [5, 2, 1] // 定义步长以及分割次数    
-            let len = arr.length
-            for (let g = 0, gLen = gaps.length; g < gaps.length; ++g) {
-                for (let i = gaps[g]; i < len; ++i) {
-                    let j
-                    for (j = i; j >= gaps[g] && arr[j - gaps[g]] > arr[i];
-                        j -= gaps[g]) { arr[j] = arr[j - gaps[g]] }
-                    [arr[i], arr[j]] = [arr[j], arr[i]]
-                }
+        const shellSort=arr=>{
+            var N=arr.length;
+            var h=1;
+            while(h<N/3){
+                h=3*h+1;//设置间隔
             }
-            return arr
+            while(h>=1){
+                for(var i=h; i<N; i++){
+                    for(j=i; j>=h && arr[j]<arr[j-h]; j-=h){
+                            [arr[j],arr[j-h]]=[arr[j-h],arr[j]];
+                        }
+                    }
+                    h=(h-1)/3;
+                }
+                return arr
         }
         console.log(shellSort(newArr))
+        //javascript 数组按名称的字母顺序排序
+        //https://blog.csdn.net/kzcming/article/details/80337639
+  
     </script>
 </body>
 
