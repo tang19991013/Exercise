@@ -49,26 +49,26 @@
         3.不断重复上述步骤。
         */
         let newArr = [1, 24522425, 52442, 52654, 6547, 47647, 6587658768, 98769]
-        const shellSort=arr=>{
-            var N=arr.length;
-            var h=1;
-            while(h<N/3){
-                h=3*h+1;//设置间隔
+        const shellSort = arr => {
+            var N = arr.length;
+            var h = 1;
+            while (h < N / 3) {
+                h = 3 * h + 1;//设置间隔
             }
-            while(h>=1){
-                for(var i=h; i<N; i++){
-                    for(j=i; j>=h && arr[j]<arr[j-h]; j-=h){
-                            [arr[j],arr[j-h]]=[arr[j-h],arr[j]];
-                        }
+            while (h >= 1) {
+                for (var i = h; i < N; i++) {
+                    for (j = i; j >= h && arr[j] < arr[j - h]; j -= h) {
+                        [arr[j], arr[j - h]] = [arr[j - h], arr[j]];
                     }
-                    h=(h-1)/3;
                 }
-                return arr
+                h = (h - 1) / 3;
+            }
+            return arr
         }
         console.log(shellSort(newArr))
         //javascript 数组按名称的字母顺序排序
         //https://blog.csdn.net/kzcming/article/details/80337639
-  
+
     </script>
 </body>
 
