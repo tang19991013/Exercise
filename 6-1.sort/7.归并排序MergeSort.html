@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="animation/corscss.css">
+</head>
+<h1>归并排序</h1>
+<div>
+    <img src="animation/归并排序.gif" alt=""><br />
+    <h2>迭代</h2>
+    <img src="animation/归并排序迭代" alt="归并排序迭代" title="归并排序迭代">
+</div>
+
+<body>
+    <script>
+        //方法1. 使用递归
+        /*
+        第一种是 自上而下的递归
+
+        申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列；
+        设定两个指针，最初位置分别为两个已经排序序列的起始位置；
+        比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置；
+        重复步骤3直到某一指针到达序列尾；
+        将另一序列剩下的所有元素直接复制到合并序列尾。
+        */
+        var arr = [1452, 3252542.1, 4132, 1, 245245, 2323423];
+
+        let mergeone = (left, right) => {
+            let resArr = []
+            while (left.length && right.length) {
+                if (left[0] < right[0]) {
+                    resArr.push(left.shift())
+                } else { resArr.push(right.shift()) }
+            } return resArr.concat(left, right)
+        }
+        const mergeSortone = arr => {
+            if (arr.length <= 1) { return arr }
+            let middle = Math.floor(arr.length / 2)
+            let left = arr.slice(0, middle)
+            let right = arr.slice(middle)
+            return mergeone(mergeSortone(left), mergeSortone(right))
+        }
+        console.time('Sort')
+        console.log(mergeSortone(arr))
+        console.timeEnd('Sort')
+
+        //方法2.  迭代比起递归还是安全很多，太深的递归容易导致堆栈溢出
+        /*
+        第二种是 自下而上的迭代 ，由于 分治法 的具体算法基本都能用 递归 跟 迭代 来实现，所有才有这种写法，其主要步骤如下：
+        将序列每相邻两个数字进行 归并操作 ，形成 ceil(n / 2) 个序列，排序后每个序列包含两/一个元素；
+        若此时序列数不是1个则将上述序列再次归并，形成 ceil(n / 4)  个序列，每个序列包含四/三个元素；
+        重复步骤2，直到所有元素排序完毕，即序列数为1
+        */
+        let newArr = [24, 245, 124, 254, 2452454251, 2, 1, 245425245245, 24542524]
+        const merge = (arr, startLeft, stopLeft, startRight, stopRight) => {
+            /* 建立左右子序列 */
+            let rightArr = new Array(stopRight - startRight + 1)
+            let leftArr = new Array(stopLeft - startLeft + 1)
+            /* 给左右序列排序 */
+            let k = startRight
+            for (let i = 0, len = rightArr.length; i < len - 1; ++i) {
+                rightArr[i] = arr[k]
+                ++k
+            }
+            k = startLeft
+            for (let i = 0, len = leftArr.length; i < len - 1; ++i) {
+                leftArr[i] = arr[k]
+                ++k
+            }
+            //设置哨兵值，当左子列或右子列读取到最后一位时，即Infinity，可以让另一个剩下的列中的值直接插入到数组中    
+            rightArr[rightArr.length - 1] = Infinity
+            leftArr[leftArr.length - 1] = Infinity
+            let m = 0
+            let n = 0
+            // 比较左子列和右子列第一个值的大小，小的先填入数组，接着再进行比较    
+            for (let c = startLeft; c < stopRight; ++c) {
+                if (leftArr[m] <= rightArr[n]) {
+                    arr[c] = leftArr[m]
+                    m++
+                } else {
+                    arr[c] = rightArr[n]
+                    n++
+                }
+            }
+        }
+        const mergeSort = arr => {
+            if (arr.length <= 1) {
+                return arr
+            }    //设置子序列的大小    
+            let step = 1
+            let left
+            let right
+            while (step < arr.length) {
+                left = 0
+                right = step
+                while (right + step <= arr.length) {
+                    merge(arr, left, left + step, right, right + step)
+                    left = right + step
+                    right = left + step
+                } if (right < arr.length) {
+                    merge(arr, left, left + step, right, arr.length)
+                } step *= 2
+            } return arr
+        }
+        console.time('Sort');
+        console.log(mergeSort(newArr))
+        console.timeEnd('Sort');
+    </script>
+</body>
+
+</html>

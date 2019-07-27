@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="animation/corscss.css">
+    <style>
+        div {
+            display: flex;
+            justify-content: center;
+        }
+
+        div div {
+            width: 200px;
+            height: 100px;
+            justify-content: center;
+            line-height: 100px;
+            color: #fff;
+        }
+
+        div>div:first-child {
+            background: #1DCBCB;
+        }
+
+        div>div:nth-child(2) {
+            background: #3767F7;
+        }
+
+        div>div:nth-child(3) {
+            background: #2A2C26;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>三路快排</h1>
+    <h1>三路快排就是将序列分为三部分：小于pivot，等于 pivot 和大于 pivot，之后递归的对小于v和大于v部分进行排序。</h1>
+    <div>
+        <div><span>&lt; pivot</span></div>
+        <div><span>=== pivot</span></div>
+        <div><span>&gt; pivot</span></div>
+    </div>
+    <div>
+        <img src="animation/" alt="">
+    </div>
+    <script>
+        /*
+        除了常规的快速排序之外，还有一个快速排序的优化版本，叫 三路快排。
+
+        当面对一个有大量重复的数据的序列时，选取 pivot 的快速排序有可能会退化成一个 O(n²) 的算法
+
+        基于这种情况，就有了 三路快排（3 Ways Quick Sort）
+
+        三路快排就是将序列分为三部分：小于pivot，等于 pivot 和大于 pivot，之后递归的对小于v和大于v部分进行排序。
+        */
+        let newArr = [1, 24542, 5245436, 476547568, 76869, 879788987]
+        const quickSort = arr => {
+            const len = arr.length
+            if (len < 2) { return arr }
+            let left = [],
+                center = [],
+                right = [],
+                pivot = arr[0];
+            for (let i = 0; i < len; ++i) {
+                if (arr[i] < pivot) { left.push(arr[i]) }
+                else if (arr[i] === pivot) { center.push(arr[i]) }
+                else { right.push(arr[i]) }
+            }
+            return [...quickSort(left), ...center, ...quickSort(right)]
+        }
+        console.time('quickSort')
+        console.log(quickSort(newArr))
+        console.timeEnd('quickSort')
+    </script>
+</body>
+
+</html>

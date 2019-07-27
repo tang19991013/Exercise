@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="animation/corscss.css">
+</head>
+
+<body>
+    <h1>桶排序</h1>
+    <div>
+        <img src="animation/桶排序" alt="">
+    </div>
+    <div id='inner'></div>
+    <script src="animation/addEventListenerResize.js"></script>
+    <script>
+        //桶排序（Bucket Sort） 跟 计数排序（Counting sort） 一样是一种稳定的线性时间排序算法，不过这次需要的辅助不是计数，而是桶。
+
+        /*
+        工作的原理是将数列分到有限数量的桶里。
+        每个桶再个别排序。
+        当要被排序的数组内的数值是均匀分配的时候，
+        桶排序使用线性时间 O(n)。
+
+        桶排序的算法步骤如下：
+
+        设置一个定量的数组当作空桶子；
+
+        寻访序列，并且把项目一个一个放到对应的桶子去；
+
+        对每个不是空的桶子进行排序；
+
+        从不是空的桶子里把项目再放回原来的序列中。
+        */
+        let newArr = [1, 245245, 24524, 4, 4, 2, 325, 4254654, 7647658769, 68213432141];
+        const bucketSort = arr => {
+            let bucketsCount = 10
+            /* 默认桶的数量 */
+            const max = Math.max(...arr)
+            /* 序列最大数字 */
+            const min = Math.min(...arr)
+            /* 数列最小数字 */
+            const bucketsSize = Math.floor((max - min) / bucketsCount) + 1
+            /* 桶的深度 */
+            const __buckets = [] /* 空桶 */
+            for (let i = 0, len = arr.length; i < len; ++i) {
+                const index = ~~(arr[i] / bucketsSize)
+                /* 骚操作，取数列中最大或最小的序列 */
+                if (!__buckets[index]) {
+                    __buckets[index] = []
+                    /* 创建子桶 */
+                } __buckets[index].push(arr[i])
+                let bLen = __buckets[index].length
+                while (bLen > 0) { /* 子桶排序 */
+                    if (__buckets[index][bLen] < __buckets[index][bLen - 1]) {
+                        [__buckets[index][bLen], __buckets[index][bLen - 1]] = [__buckets[index][bLen - 1], __buckets[index][bLen]]
+                    } bLen--
+                }
+            }
+            let buckets = [] /* 真实序列 */
+            for (let i = 0, len = __buckets.length; i < len; ++i) {
+                if (__buckets[i]) { buckets.push(...__buckets[i]) }
+            }
+            return buckets
+        }
+        inner.innerHTML = bucketSort
+        console.time('Sort')
+        console.log(bucketSort(newArr));
+        console.timeEnd('Sort')
+    </script>
+</body>
+
+</html>

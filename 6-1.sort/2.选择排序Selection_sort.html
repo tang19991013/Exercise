@@ -68,7 +68,9 @@
             }
             return arr
         }
+        console.time('Sort')
         console.log(selectionSort(newArr))
+        console.timeEnd('Sort')
         inner.innerHTML = '方法1.<br>' + selectionSort
     </script>
 </body>
