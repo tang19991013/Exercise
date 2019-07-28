@@ -82,8 +82,19 @@
 
         //js封装API sort
         let newArr = [1, 45425, 67687, 98989809, 314235, 425453, 24334321]
+        newArr = newArr.sort((a, b) => a - b);
         console.time('Sort');
-        console.log(newArr.sort((a, b) => { a - b }))
+        console.log(newArr)
+        console.timeEnd('Sort');
+
+        //如果是按照长度排序
+        let arrLength = ["abwaerewarwaerwa1321", '2454251341141341awaerbaw', 24542525, 245141, 2324, 2454251, 2452452, 324322222222];
+        arrLength.sort((a, b) => {
+            var { a, b } = { a: String(a), b: String(b) }
+            return a.length - b.length
+        });
+        console.time('Sort');
+        console.log(arrLength)
         console.timeEnd('Sort');
     </script>
 </body>
