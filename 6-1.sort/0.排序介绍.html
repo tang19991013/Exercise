@@ -66,7 +66,13 @@
         <li>稳定性：排序后 2 个相等键值的顺序和排序之前它们的顺序相同。</li>
     </ol>
 
-
+    <script>
+        //js封装API sort
+        let newArr = [1, 45425, 67687, 98989809, 314235, 425453, 24334321]
+        console.time('Sort');
+        console.log(newArr.sort((a, b) => { a - b }))
+        console.timeEnd('Sort');
+    </script>
 </body>
 
 </html>

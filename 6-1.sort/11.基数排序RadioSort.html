@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="animation/corscss.css">
+    <style>
+        p {
+            text-align: center;
+            font: 17px '微软雅黑';
+        }
+    </style>
+</head>
+
+<body>
+    <h1>基数排序</h1>
+    <div>
+        <img src="animation/基数排序" alt="">
+    </div>
+    <div id='inner'></div>
+    <p>
+        <span style="color:red;font-size:23px;">
+            基数排序
+        </span><br>
+        缺点:<br />
+        这种排序方式，计算的数字越大排序速度越慢
+        如[99, 88, 77, 66, 55, 44, 33, 22, 11]
+        <br>
+    </p>
+    <script>
+        /*
+        基数排序（Radix sort） 是一种非比较型整数排序算法，其原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。由于整数也可以表达字符串（比如名字或日期）和特定格式的浮点数，所以基数排序也不是只能使用于整数。
+
+        工作原理是将所有待比较数值（正整数）统一为同样的数字长度，数字较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后，数列就变成一个有序序列。
+
+        基数排序的方式可以采用 LSD（Least significant digital） 或 MSD（Most significant digital） 。
+
+        LSD 的排序方式由键值的 最右边（最小位） 开始，而 MSD 则相反，由键值的 最左边（最大位） 开始。
+
+        MSD 方式适用于位数多的序列。
+
+        LSD 方式适用于位数少的序列。
+
+        基数排序 、 桶排序 、 计数排序 原理都差不多，都借助了 "桶" 的概念，但是使用方式有明显的差异，其差异如下：
+        */
+        var newArr = [99, 88, 77, 66, 55, 44, 33, 22, 11]
+        const LSDRadixSort = arr => {
+            const max = Math.max(...arr) /* 获取最大值 */
+            let digit = `${max}`.length /* 获取最大值位数 */
+            let start = 1 /* 桶编号 */
+            let buckets = [] /* 空桶 */
+            while (digit > 0) {
+                start *= 10
+                /* 入桶 */
+                for (let i = 0, len = arr.length; i < len; ++i) {
+                    const index = (arr[i] % start)
+                    if (!buckets[index]) {
+                        buckets[index] = []
+                    }
+                    buckets[index].push(arr[i]) /* 往不同桶里添加数据 */
+                }
+                arr = []
+                /* 出桶 */
+                for (let i = 0; i < buckets.length; i++) {
+                    if (buckets[i]) {
+                        arr = arr.concat(buckets[i])
+                    }
+                }
+                buckets = []
+                digit--
+            }
+            return arr
+        }
+        console.time('Sort');
+        console.log(LSDRadixSort(newArr))
+        console.timeEnd('Sort');
+    </script>
+</body>
+
+</html>

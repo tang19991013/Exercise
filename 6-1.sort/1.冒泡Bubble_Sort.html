@@ -7,6 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="animation/corscss.css">
+    <style>
+        #innercock {
+            width: 300px;
+            margin: 0 auto;
+            font-size: 13px;
+        }
+
+        @media screen and (max-width:430px) {
+            #innercock {
+                width: 100%;
+                margin: 0 auto;
+                font-size: 19px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -17,7 +32,13 @@
     </div>
     <div id='inner'></div>
     <script src="animation/addEventListenerResize.js"></script>
+    <p style="font-size:23px;text-align:center;font-weight: bold;">鸡尾酒排序</p>
+    <div>
+        <img src="animation/鸡尾酒排序" alt="">
+    </div>
+    <div id='innercock'></div>
     <script>
+        //冒泡排序
         let arr = [1, 23, 4, 2542, 5425, 425425425, 24542653, 3653653, 12245, 4252451, 24332423]
 
         const len = arr.length - 1;
@@ -57,10 +78,43 @@
             return arr
         }
         //function 调用时 bubbleSort(arr)
-        console.timeEnd('Sort')
+        console.time('Sort')
         console.log(bubbleSort(newArr))
         console.timeEnd('Sort')
         inner.innerHTML = '方法1.<br>' + bubbleSort
+    </script>
+    <script>
+        //鸡尾酒排序
+        /*
+            鸡尾酒排序，是 冒泡排序 的一种变形。此算法与 冒泡排序 
+            不同的地方在于从低到高然后从高到低，而 冒泡排序 则仅从低到高去比较序列里的每个元素。它可以得到比 冒泡排序 稍微好一点的性能，原因是 冒泡排序 
+            只从一个方向进行比对（由低到高），每次循环只移动一个项目。
+
+            步骤跟冒泡算法差不多，区别在于从起点到终点遍历完之后会进行一次终点到起点的遍历。
+        */
+        const cocktailSort = arr => {
+            let i
+            let left = 0
+            let right = arr.length - 1
+            while (left < right) {
+                for (i = left; i < right; ++i)
+                    if (arr[i] > arr[i + 1]) {
+                        [arr[i], arr[i + 1]] = [arr[i + 1], arr[i]]
+                    }
+                right--
+                for (i = right; i > left; --i)
+                    if (arr[i - 1] > arr[i]) {
+                        [arr[i], arr[i - 1]] = [arr[i - 1], arr[i]]
+                    }
+                left++
+            }
+            return arr
+        }
+
+        console.time('Sort')
+        console.log(cocktailSort(newArr))
+        console.timeEnd('Sort')
+        innercock.innerHTML = '方法2<br/>' + cocktailSort;
     </script>
 </body>
 
