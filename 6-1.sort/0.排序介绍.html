@@ -65,7 +65,33 @@
         <li>k：不同键值的数量；</li>
         <li>稳定性：排序后 2 个相等键值的顺序和排序之前它们的顺序相同。</li>
     </ol>
-
+    <hr>
+    <!-- 分割线 -->
+    <p style="text-align: center">页面按大小排序</p>
+    <hr>
+    <p>排序前</p>
+    <ul id="SortUlD">
+        <li>42</li>
+        <li>72</li>
+        <li>13</li>
+        <li>22</li>
+        <li>99</li>
+    </ul>
+    <p>排序后</p>
+    <ul id='ulSortD'></ul>
+    <hr>
+    <p style="text-align: center">页面按长度排序</p>
+    <hr>
+    <p>排序前</p>
+    <ul id='SortUlLength'>
+        <li>421</li>
+        <li>722</li>
+        <li>134</li>
+        <li>22.425</li>
+        <li>99.23131</li>
+    </ul>
+    <p>排序后</p>
+    <ul id='ulSortLength'></ul>
     <script>
         //使用setTimeout实现功能 性价比低
         //实用性低
@@ -97,6 +123,43 @@
         console.log(arrLength)
         console.timeEnd('Sort');
     </script>
+    <!-- li页面排序按大小排序 -->
+    <script>
+        // 前提没有复杂的class 样式 id样式
+        let html;
+        let SortUlD = document.getElementById('SortUlD');
+        //1.获取页面内容
+        html = SortUlD.innerHTML;
+        //2.去除头尾身体Li
+        html = html.replace(/(^\s*<li>)|(<\/li>\s*$)/g, "");
+        //3.进行切割
+        html = html.split(/<\/li>\s*<li>/g);
+        //4.排序
+        html.sort((a, b) => a - b);
+        //5.之后使用字符串拼接 
+        html = '<li>' + html.join('</li><li>') + '</li>';
+        //6.保存到要存放的/或者原来的位置
+        let ulSortD = document.getElementById('ulSortD');
+        ulSortD.innerHTML = html;
+        ulSortD.nextElementSibling.innerHTML = '这是使用js排序的<span style="color:red">------</span>仔细看的同学会发现这是个hr标签';
+    </script>
+    <!-- li页面按长度排序 -->
+    <script>
+        let SortUlLength = document.getElementById('SortUlLength');
+        //1.获取页面内容
+        html = SortUlLength.innerHTML;
+        //2.替换开头的li标签和结尾的li标签
+        html = html.replace(/(^\s*<li>)|(<\/li>\s*$)/g, "");
+        //3.进行切割 </li>到<li>中的空格都去除
+        html = html.split(/<\/li>\s*<li>/g);
+        //4.进行长度排序
+        html.sort((a, b) => a.length - b.length);
+        //5.使用字符串拼接恢复切割前的状态
+        html = '<li>' + html.join('</li><li>') + '</li>';
+        //nextElementSibling下一个兄弟
+        SortUlLength.nextElementSibling.nextElementSibling.innerHTML = html;
+    </script>
+
 </body>
 
 </html>
