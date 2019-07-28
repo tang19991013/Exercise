@@ -22,10 +22,10 @@
     2.grguments不能使用数组家API
     */
 
-    //2.
+    //2.使用扩展运算符 ES6对象扩展 Object新增方法
     function cale(name, ...arr) {
         //...arr仅收集出ename之外的剩余参数
-        return arr.reduce((prev, elem) => prev + Number(elem),0);
+        return arr.reduce((prev, elem) => prev + Number(elem), 0);
     }
     console.log(cale('lilei', 2452, '24542524'));
 </script>
