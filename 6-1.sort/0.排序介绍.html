@@ -67,6 +67,19 @@
     </ol>
 
     <script>
+        //使用setTimeout实现功能 性价比低
+        //实用性低
+        let list = [3, 4, 5, 8, 9, 7, 1, 3, 4, 3, 6]
+        let arr = [];
+        console.time('Sort');
+        list.forEach(val => {
+            setTimeout(function () {
+                arr.push(val);
+            }, val * 1)
+        })
+        setTimeout(() => console.log(arr), 1000)
+        console.timeEnd('Sort');
+
         //js封装API sort
         let newArr = [1, 45425, 67687, 98989809, 314235, 425453, 24334321]
         console.time('Sort');
