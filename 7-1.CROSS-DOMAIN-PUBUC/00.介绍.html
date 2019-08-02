@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>
+            <h1>同源策略:</h1>
+            <h3>
+                <span>协议:http/https</span>
+                <span>域名:www.czp.cn/a.czp.cn</span>
+                <span>端口号:8080/8081</span>
+                <span>都一致才叫同域</span>
+                <span>不然就叫跨域</span>
+                <p>http://www.czp.cn:8080</p>
+                <p>http://a.czp.cn:8081</p>
+                <p></p>
+            </h3>
+        </li>
+        <li>
+            <h1>为什么浏览器不支持跨域</h1>
+            <h3>
+                <p>浏览器中有</p>
+                <span>cookie</span>
+                <span>LocalStorage</span>
+                <span>都是同域下的不支持跨域</span>
+            </h3>
+            <h3>
+                DOM元素也有同源策略 iframe
+                <p>举例子:</p>
+                <span>在我的页面里把百度引入过来
+                    ，假如我的网站可以操作iframe里面的页面
+                    我就可以看到你输入的账号密码了，不安全
+                </span>
+            </h3>
+            <h3>
+                ajax 也不支持跨域
+            </h3>
+        </li>
+        <li>
+            <h1>
+                实现跨域
+            </h1>
+            <ol>
+                <li>jsonp</li>
+                <li>cors ---纯后端提供</li>
+                <li>postMessage</li>
+                <li>window.name</li>
+                <li>location.hash</li>
+                <li>http-proxy</li>
+                <li>nginx</li>
+                <li>websocket</li>
+                <li>document.domain</li>
+            </ol>
+            
+        </li>
+    </ul>
+</body>
+</html>

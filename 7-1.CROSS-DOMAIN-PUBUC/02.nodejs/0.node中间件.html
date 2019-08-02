@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    访问时直接访问
+    http://localhost:3000/0.node中间件.html
+    hellow
+    <script>
+    //使用node中间件跨域访问
+
+    
+    //小黄人四部 这里没有考虑兼容性问题
+    //1创建 xmlhttprequest对象
+    let xhr=new XMLHttpRequest;
+    //------------------------------------------//上分割线 
+        //使用cookie方法
+        document.cookie='name=zfpx';//使用cookie要设置必须携带凭证
+        xhr.withCredentials=true;//必须携带凭证 但是服务器短必须设置允许Credentials
+    //------------------------------------------//下分割线 
+    //4返回数据
+    xhr.onreadystatechange=function(){
+        //200-299都是之间都是成功状态
+        if(xhr.readyState===4&&xhr.status>=200&&xhr.status<300||xhr.readyState===4&&xhr.status===304){
+            //304已缓存
+            console.log(xhr.response)
+            //取道服务器返回的header头 浏览器回给你讲后台返回的头不安全 所以要后台设置返回的头很安全
+            console.log(xhr.getResponseHeader('name'))
+        }
+    }
+    //配置 open开启 设置 2
+    xhr.open('get','http://localhost:4000/getData',true);//是否为异步
+    //PUT请求代表修改 需要服务器加设置 不然会提示不允许复杂的请求
+
+    //请求分为 请求状态行、请求头、请求消息主体
+    //------------------------------------------//上分割线 
+    //除了使用get?uname=aaaa，post方法send发送外
+    //还可以使用请求头setRequestHeader发送但是服务器要设置向服务器发送参数
+    //不然浏览器会提示不允许请求头
+    xhr.setRequestHeader('uname','aaaa')
+    xhr.setRequestHeader('aaa','24524524')
+    //------------------------------------------//下分割线
+
+    //发送请求 3
+    xhr.send();//发送
+    </script>
+</body>
+</html>

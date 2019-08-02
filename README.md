@@ -14,3 +14,5 @@
     5-1简单实现Promise一级then写法
 # 6 sort
   JavaScript排序算法
+# 7 什么叫跨域
+    

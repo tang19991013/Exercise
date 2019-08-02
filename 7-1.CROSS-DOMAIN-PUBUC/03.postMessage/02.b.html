@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onmessage=function(e){
+            //接受到消息
+            console.log(e.data)
+            //给夫标签返回消息
+            e.source.postMessage('我不爱你',e.origin) //e.origin返回的源，写个3000也行       
+        }    
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <p>link,img,script是不受同源策略的</p>
+        <p>可以看一下百度，百度就是动态创建script标签实现的跨域请求</p>
+    <script>
+        //等于引进了别人家的一个文件域
+    function jsonp({url,params,cb}){
+        return new Promise((resolve,reject)=>{
+            let script=document.createElement('script');
+            window[cb]=function(data){
+                resolve(data);
+                document.body.removeChild(script);
+            }
+            params={...params,cb} 
+            let arrs=[];
+            for(let key in params){
+                arrs.push(`${key}=${params[key]}`);// req=2&cb=show
+            }
+            script.src=`${url}?${arrs.join('&')}`;//url?a=1&b=2
+            //最后放到页面去
+            document.body.appendChild(script)
+        })
+    }
+    /*
+    只能发送get请求 不支持post put delete
+    script src引别人家的东西就是取
+    缺点： 不安全 xss攻击 假如说我引入的这个网站，突然有天返回你的结果里面套了script标签
+    我用document.body.appendChild 把script脚本塞到我的页面去，塞进去后做一些恶意的攻击
+    做一些弹框 往页面添加一些内容;现在大多网站为了安全已经不采用jsonp了
+    */ 
+    // show({"q":"","p":false,"bs":"","csor":"0","err_no":0,"errmsg":"","g":[{"type":"his_normal","sa":"h_1","q":"面试时候问你ajax"},{"type":"his_normal","sa":"h_2","q":"面试时候问如何解释ajax中的发送"},{"type":"his_normal","sa":"h_3","q":"如何解释ajax中的发送"},{"type":"his_normal","sa":"h_4","q":"apicloud标签"},{"type":"his_normal","sa":"h_5","q":"apicloud学习"}]})
+    jsonp({
+        url:'http://localhost:3000/say',
+        params:{wb:"服务器",csor:0},
+        cb:'show'
+    }).then(data=>{
+        console.log(data)
+    })
+    // jsonp({
+    //     url:'https://www.baidu.com/sugrec?prod=pc_his&from=pc_web&json=1&sid=1458_21094_29522_29521_29098_29567_28834_29221_26350_29461&hisdata=%5B%7B%22time%22%3A1564708763%2C%22kw%22%3A%22apicloud%E5%AD%A6%E4%B9%A0%22%7D%2C%7B%22time%22%3A1564708780%2C%22kw%22%3A%22apicloud%E6%A0%87%E7%AD%BE%22%7D%2C%7B%22time%22%3A1564742288%2C%22kw%22%3A%22%E5%A6%82%E4%BD%95%E8%A7%A3%E9%87%8Aajax%E4%B8%AD%E7%9A%84%E5%8F%91%E9%80%81%22%7D%2C%7B%22time%22%3A1564742363%2C%22kw%22%3A%22%E9%9D%A2%E8%AF%95%E6%97%B6%E5%80%99%E9%97%AE%E5%A6%82%E4%BD%95%E8%A7%A3%E9%87%8Aajax%E4%B8%AD%E7%9A%84%E5%8F%91%E9%80%81%22%7D%2C%7B%22time%22%3A1564745381%2C%22kw%22%3A%22%E9%9D%A2%E8%AF%95%E6%97%B6%E5%80%99%E9%97%AE%E4%BD%A0ajax%22%7D%5D',
+    //     params:{
+    //         req:2,bs:'js',csor:0},
+    //     cb:'show'
+    // }).then(data=>{
+    //     console.log(data)
+    // })
+    </script>
+    <!-- <script src="https://www.baidu.com/sugrec?prod=pc_his&from=pc_web&json=1&sid=1458_21094_29522_29521_29098_29567_28834_29221_26350_29461&hisdata=%5B%7B%22time%22%3A1564708763%2C%22kw%22%3A%22apicloud%E5%AD%A6%E4%B9%A0%22%7D%2C%7B%22time%22%3A1564708780%2C%22kw%22%3A%22apicloud%E6%A0%87%E7%AD%BE%22%7D%2C%7B%22time%22%3A1564742288%2C%22kw%22%3A%22%E5%A6%82%E4%BD%95%E8%A7%A3%E9%87%8Aajax%E4%B8%AD%E7%9A%84%E5%8F%91%E9%80%81%22%7D%2C%7B%22time%22%3A1564742363%2C%22kw%22%3A%22%E9%9D%A2%E8%AF%95%E6%97%B6%E5%80%99%E9%97%AE%E5%A6%82%E4%BD%95%E8%A7%A3%E9%87%8Aajax%E4%B8%AD%E7%9A%84%E5%8F%91%E9%80%81%22%7D%2C%7B%22time%22%3A1564745381%2C%22kw%22%3A%22%E9%9D%A2%E8%AF%95%E6%97%B6%E5%80%99%E9%97%AE%E4%BD%A0ajax%22%7D%5D&req=2&bs=js&csor=0&cb=show">
+    </script> -->
+</body>
+</html>
