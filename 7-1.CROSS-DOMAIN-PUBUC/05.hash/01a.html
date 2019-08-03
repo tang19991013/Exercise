@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 路徑後面的hash值可以用來通信 -->
+    <!-- 目的a想訪問c -->
+    <!-- a給c穿一個hash值，c收到hash值后， c把hash值傳遞給b，b將結果放到a的hash值中-->
+    <!-- a->發送請求c c-接受到請求 c—把hash之傳送到b b將結果放到ahash值中 -->
+    <iframe src="http://localhost:4000/03c.html#iloveyou" frameborder="0"></iframe>
+<script>
+    window.onhashchange=function(){
+        console.log(location.hash)
+    }
+</script>
+</body>
+</html>

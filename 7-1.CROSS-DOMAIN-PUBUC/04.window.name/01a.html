@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        a和b是同域的 http://localhost:3000
+        c是獨立的 http://localhost:4000
+        a獲取c的數據 
+        a先引用c 
+        c把值放到window.name，把a引用的地址改到b
+    </div>
+    <iframe src="http://localhost:4000/03c.html" frameborder="0"
+     onload="load()" id='iframe'></iframe>
+    <script>
+    let first=true;
+    function load(){
+        if(first){
+        let iframe=document.getElementById('iframe');
+        iframe.src = 'http://localhost:3000/02b.html';
+        first=false;
+    }else{
+        console.log(iframe.contentWindow.name);
+        //成功取到了我不愛你了
+    }
+}
+    </script>
+</body>
+</html>

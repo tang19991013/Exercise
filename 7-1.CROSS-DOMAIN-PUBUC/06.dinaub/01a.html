@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- document.domain必须是一级域名和二级域名才能使用 -->
+    <!-- 域名 一级域名二级域名-->
+    <!-- www.baidu.com -->
+    <!-- video.baidu.com -->
+    <!-- 查看 C:\Windows\System32\drivers\etc 文件下的host文件配置 -->
+    <!-- a是通过 http://a.cc1.cn:3000/01a.html -->
+    hella
+    <iframe id='iframe' src="http://b.cc1.cn:3000/02b.html" onload="load()" frameborder="0"></iframe>
+<script>
+    //all2-1@@
+    // 没有配置domain前访问这个地址会提示跨越报错 http://a.cc1.cn:3000/01a.html
+    document.domain='cc1.cn'
+ function load(){
+     //跨域了 拿不到数据 解决请看@@
+  console.log(iframe.contentWindow['a'])
+ }
+</script>
+</body>
+</html>
