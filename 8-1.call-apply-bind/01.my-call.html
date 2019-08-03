@@ -8,6 +8,8 @@
 </head>
 <body>
     <script>
+        "use strict";
+        //严格模式只是禁止调用 arguments 本身 arguments.callee
         //实现一个call函数
         /*
         1.思路:将要改变this的指向的方法挂在到目标this上执行并且返回

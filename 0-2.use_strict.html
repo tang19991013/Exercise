@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    #top-header {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <header id='top-header'>
+        <h1>
+            use strict
+        </h1>
+    </header>
+    <section>
+        <ul>
+            <li>严格模式的限制</li>
+            <ol>
+                <li>
+                    不允许使用未声明的变量：
+                    <p>pI = 3.14;// 报错 (pI 未定义)</p>
+                    对象也是一个变量：
+                    <p>obj={x:1,y:2}//报错(obj 未定义)</p>
+                </li>
+                <li>
+                    不允许删除变量或对象和函数：
+                    <p>
+                        window.pI=3.14; delete pI;//报错(SyntaxError: Delete of an unqualified identifier in strict mode.) 会讲语法错误,大概的意思是在严格模式不允许删除
+                    </p>
+                    <p>
+                        不允许删除函数。function fn(p1, p2) {}; delete fn;// 报错
+                    </p>
+                </li>
+                <li>
+                    不允许变量重名:
+                    <p>
+                        var x=1; function x(p1, p1) {}; //报错
+                    </p>
+                </li>
+                <li> 不允许使用八进制:
+                    <p>
+                        let num = 010; // 报错
+                    </p>
+                </li>
+                <li>不允许使用转义字符:
+                    <p>
+                        var x = \010; // 报错
+                    </p>
+                </li>
+                <li>不允许对只读属性赋值:
+                    <p>
+                        var obj = {}; Object.defineProperty(obj, "x", {value:0, writable:false}); obj.x = 3.14; // 报错
+                    </p>
+                </li>
+                <li>不允许对一个使用getter方法读取的属性进行赋值
+                    <p>
+                        var obj = {get x() {return 0} }; obj.x = 3.14; // 报错
+                    </p>
+                </li>
+                <li>不允许删除一个不允许删除的属性：
+                    <p>
+                        delete Object.prototype; // 报错
+                    </p>
+                </li>
+                <li>变量名不能使用 "eval" 字符串:
+                    <p>
+                        var eval = 3.14; // 报错
+
+                    </p>
+                </li>
+                <li>不允许使用with 以下这种语句:
+                    <p>
+                        with (Math){x = cos(2)}; // 报错*/
+                    </p>
+                </li>
+                <li>由于一些安全原因，在作用域 eval() 创建的变量不能被调用：
+                    <p>
+                        eval ("var x = 2");alert (x);// 报错*/
+                    </p>
+                </li>
+                <li> 禁止this关键字指向全局对象 因此，使用构造函数时，如果忘了加new，this不再指向全局对象，而是报错。
+                    <p>
+                        局部this如果指向window 的话会指向undefined<br>
+                        function f(){<br>
+                            return !this;<br>
+                        } <br>
+                        // 返回false，因为"this"指向全局对象，"!this"就是false<br>
+                        <br>
+                        function f(){ <br>
+                            "use strict";<br>
+                            return !this;<br>
+                        } <br>
+                        // 返回true，因为严格模式下，this的值为undefined，所以"!this"为true。
+                    </p>
+                </li>
+                <li>保留关键字
+                    <p>
+                            implements,<br>
+                            interface,<br>
+                            let,<br>
+                            package,<br>
+                            private,<br>
+                            protected,<br>
+                            public,<br>
+                            static,<br>
+                            yield,<br>
+                    </p>
+                </li>
+            </ol>
+        </ul>
+    </section>
+    <script>
+        //实例
+        //在函数内部声明是局部作用域 (只在函数内使用严格模式):
+        /*
+        x = 3.14;       // 不报错 
+        myFunction();
+
+        function myFunction() {
+        "use strict";
+            y = 3.14;   // 报错 (y 未定义)
+        }
+        */
+        "use strict";
+        //严格模式只是禁止调用 arguments 本身 arguments.callee
+        function waht() {
+            // let arr = arguments[1]
+            // let obj = [...arguments].slice();
+            // console.log(obj)
+            // console.log(obj = { get arguments() { return this } });
+            // console.log(arguments)
+            return function () {
+                return function () {
+                    console.log(this ? '指向window' : '指向undefined');
+                }
+            }
+        }
+        let fun1 = waht(1, 23, 4, 5, 6);
+        fun1()();//严格模式下指向undefined
+        var obj = {
+            name: 'zhang',
+            waht: function () {
+                console.log(this);
+            }
+
+        }
+        obj.waht();//this指向obj
+        //1.不允许使用未声明的变量：
+        /*
+         pI = 3.14;// 报错 (pI 未定义)
+         obj={x:1,y:2}//报错(obj 未定义)
+        */
+
+        //2.不允许删除变量或对象和函数。
+        /*
+        window.pI=3.14; delete pI;//报错(SyntaxError)
+        不允许删除函数。function fn(p1, p2) {}; delete fn;// 报错
+        */
+
+        //3.不允许变量重名:
+        /*
+        let x=1;
+        function x(p1, p1) {}; //报错
+        */
+
+        //4.不允许使用八进制:
+        /*
+        let num = 010;  
+        */
+
+        //5.不允许使用转义字符:
+        /*
+        var x = \010;   
+        */
+
+        //6.不允许对只读属性赋值:
+        /*
+        var obj = {};
+        Object.defineProperty(obj, "x", {value:0, writable:false});
+        obj.x = 3.14;            // 报错
+        */
+
+        //7.不允许对一个使用getter方法读取的属性进行赋值
+        /*
+        var obj = {get x() {return 0} };
+         obj.x = 3.14;            // 报错  
+        */
+
+        //8.不允许删除一个不允许删除的属性：
+        /*
+        delete Object.prototype; // 报错
+        */
+
+        //9.变量名不能使用 "eval" 字符串:
+        /*
+        var eval = 3.14;  // 报错
+        */
+
+        //10.变量名不能使用 "arguments" 字符串:
+        /*var arguments = 3.14;    // 报错*/
+
+        //11.不允许使用with 以下这种语句:
+        /*with (Math){x = cos(2)}; // 报错*/
+
+        //12.由于一些安全原因，在作用域 eval() 创建的变量不能被调用：
+        /*eval ("var x = 2");alert (x);// 报错*/
+
+        //12.禁止this关键字指向全局对象 因此，使用构造函数时，如果忘了加new，this不再指向全局对象，而是报错。
+        /*
+            局部this如果指向window 的话会指向undefined;
+            
+            function f(){
+            return !this;
+            } 
+            // 返回false，因为"this"指向全局对象，"!this"就是false
+
+            function f(){ 
+                "use strict";
+                return !this;
+            } 
+            // 返回true，因为严格模式下，this的值为undefined，所以"!this"为true。
+        */
+        //13.保留关键字
+        /*为了向将来Javascript的新版本过渡，严格模式新增了一些保留关键字：
+            implements,
+            interface,
+            let,
+            package,
+            private,
+            protected,
+            public,
+            static,
+            yield,
+            var public = 1500;      // 报错
+        */
+    </script>
+</body>
+
+</html>

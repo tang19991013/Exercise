@@ -1,0 +1,47 @@
+/* 为了简化代码重用性，封装一个居中css */
+.text-align{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
+/* 外边距居中 请提前设置宽高*/
+.margin-center{
+    margin: auto;
+}
+.margin-zero-center{
+    margin: 0 auto;
+}
+.d-flex{
+    display: flex;
+}
+.flex-nowrap{
+    /* 内容不够也不换行 默认nowrap */
+    flex-wrap: nowrap;
+}
+.justify-content-center{
+    justify-content: center;
+}
+.justify-items-center{
+    justify-items: center;
+}
+.float-center{
+    width: 30%;
+    float: left;
+    margin:0 35%;
+}
+.float-center>*{
+    width: 100%;
+}
+.absolute-center{
+    width: 30%;
+    position: absolute;
+    left: 35%;
+    top: 35%;
+}
+.absolute-center *{
+    width: 100%;
+}
