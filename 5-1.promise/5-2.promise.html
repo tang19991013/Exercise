@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //未添加异步处理等其他边界情况
+        //1.自动执行函数，2.三个状态，3.then
+        class myPromise {
+            constructor(fn) {
+                //三个状态
+                this.state = 'pending'; //默认等待状态
+                this.value = undefined;
+                this.reason = undefined;
+                //成功走
+                let resolve = value => {
+                    if (this.state === 'pending') {
+                        this.state = 'fulfilled'
+                        this.value = value;
+                    }
+                }
+                //失败走
+                let reject = value => {
+                    if (this.state === 'pending') {
+                        this.state = 'rejected'
+                        this.reason = value
+                    }
+                }
+
+                //自动执行函数
+                try {
+                    fn(resolve, reject)
+                } catch (e) {
+                    reject(e)
+                }
+            }
+
+            //then
+            then(onFulfilled, noRejected) {
+                switch (this.state) {
+                    case 'fulfilled':
+                        onFulfilled()
+                        break
+                    case 'rejected':
+                        onRejected()
+                        break
+                    default:
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
