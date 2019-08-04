@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //websocket没有跨域问题
+        /*
+        websocket用的是什么协议
+        用的是ws协议
+        */
+        /*
+        websocket传输是靠什么
+        ws内部都是基于tcp传输的
+        */
+        /*
+        http的长连接和socket本质区别是什么
+        一个是单向，一个是双向的
+        */
+    //高级api 不兼容 socket.io(一般使用他)做成兼容
+    let socket=new WebSocket('ws://localhost:3000');
+    //连接成功
+    socket.onopen=function(){
+        socket.send('我爱你')
+    }
+    //接收消息
+    socket.onmessage=function(e){
+        console.log(e.data)
+    }
+    </script>
+</body>
+</html>

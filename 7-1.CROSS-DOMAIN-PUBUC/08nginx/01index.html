@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let xhr = new XMLHttpRequest;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300 || xhr.readyState === 4 && xhr
+                .status === 304) {
+                console.log(xhr.response)
+            }
+        }
+        //直接访问nginx a.json会提示跨域错误 现在又要像之前·那样配置文件了:如跨域头
+        xhr.open('get', 'http://localhost/a.json', true);
+        xhr.send(); //发送
+    </script>
+</body>
+
+</html>

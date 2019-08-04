@@ -1,0 +1,39 @@
+2019/08/04 09:17:45 [error] 1100#6428: *1 CreateFile() "E:\html\Exercise\7-1.CROSS-DOMAIN-PUBUC\08nginx\nginx-1.14.2/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2019/08/04 09:21:28 [notice] 4528#6280: signal process started
+2019/08/04 09:21:50 [error] 15036#15116: *4 CreateFile() "E:\html\Exercise\7-1.CROSS-DOMAIN-PUBUC\08nginx\nginx-1.14.2/html/a.josn" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /a.josn HTTP/1.1", host: "localhost"
+2019/08/04 09:32:31 [notice] 12072#700: signal process started
+2019/08/04 09:33:20 [emerg] 5172#13824: unknown directive "add_header"Access-Control-Allow-Origin"" in E:\html\Exercise\7-1.CROSS-DOMAIN-PUBUC\08nginx\nginx-1.14.2/conf/nginx.conf:59
+2019/08/04 09:33:25 [notice] 4984#11876: signal process started
+2019/08/04 09:33:33 [emerg] 1372#5376: invalid number of arguments in "root" directive in E:\html\Exercise\7-1.CROSS-DOMAIN-PUBUC\08nginx\nginx-1.14.2/conf/nginx.conf:59
+2019/08/04 09:33:38 [notice] 13660#9784: signal process started
+2019/08/04 09:34:42 [emerg] 14108#9908: unexpected "}" in E:\html\Exercise\7-1.CROSS-DOMAIN-PUBUC\08nginx\nginx-1.14.2/conf/nginx.conf:61
+2019/08/04 09:35:33 [emerg] 7388#13708: unexpected "}" in E:\html\Exercise\7-1.CROSS-DOMAIN-PUBUC\08nginx\nginx-1.14.2/conf/nginx.conf:61
+2019/08/04 09:35:39 [notice] 440#14748: signal process started
+2019/08/04 09:36:51 [notice] 3128#6404: signal process started
+2019/08/04 09:37:31 [notice] 12424#13068: signal process started
+2019/08/04 09:38:38 [notice] 10596#5260: signal process started
+2019/08/04 09:38:43 [notice] 7512#13644: signal process started
+2019/08/04 09:39:03 [notice] 13364#2716: signal process started
+2019/08/04 09:39:21 [notice] 7772#4804: signal process started
+2019/08/04 09:39:41 [notice] 10140#15208: signal process started
+2019/08/04 09:39:55 [notice] 14092#13732: signal process started
+2019/08/04 09:40:21 [notice] 4900#11464: signal process started
+2019/08/04 09:40:25 [notice] 6372#1088: signal process started
+2019/08/04 09:40:26 [notice] 14648#14724: signal process started
+2019/08/04 09:41:02 [notice] 14580#7884: signal process started
+2019/08/04 09:41:11 [notice] 12764#7704: signal process started
+2019/08/04 09:41:18 [notice] 7564#11856: signal process started
+2019/08/04 09:41:32 [notice] 7032#8672: signal process started
+2019/08/04 09:41:49 [notice] 12528#6552: signal process started
+2019/08/04 09:41:57 [notice] 13668#11580: signal process started
+2019/08/04 09:42:11 [notice] 6320#15016: signal process started
+2019/08/04 09:42:23 [notice] 13768#7072: signal process started
+2019/08/04 09:42:33 [notice] 3316#6292: signal process started
+2019/08/04 09:42:44 [notice] 9568#1988: signal process started
+2019/08/04 09:44:15 [notice] 10016#15048: signal process started
+2019/08/04 09:44:59 [notice] 7348#8320: signal process started
+2019/08/04 09:45:16 [notice] 916#8016: signal process started
+2019/08/04 09:47:15 [notice] 2036#1484: signal process started
+2019/08/04 09:47:35 [notice] 12764#11636: signal process started
+2019/08/04 09:47:58 [notice] 1484#1068: signal process started
+2019/08/04 09:48:14 [notice] 7272#2564: signal process started
