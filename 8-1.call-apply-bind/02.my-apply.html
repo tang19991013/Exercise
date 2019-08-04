@@ -8,6 +8,8 @@
 </head>
 <body>
     <script>
+        'use strict'
+        //apply 跟call 一样不过多了个打散数组
         Function.prototype.myApply=function(content){
             //固定套路先判断 this 是不是函数 不是函数抛出错误
             if(typeof this!=='funtion'){
