@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+    .var-let{
+        text-align: center;
+    }
+    .var-let img{
+        width:50%;
+    }
+    @media screen and (max-width:1024px) and (min-width:721px){
+    .var-let img{
+        width:80%;
+    }
+    }
+    @media screen and (max-width:720px){
+    .var-let img{
+        width: 100%;
+    }
+    }
+    </style>
+</head>
+<div class="var-let">
+    <h2>var=>改为let会发生什么</h2>
+    <img src="image/var-let_setTimeout.png" alt="">
+</div>
+<body>
+    <script>
+        /*
+        for(var i=0;i<10;i++){setTimeout(function(){console.log(i)},1000)} //10 10 10
+        */
+        /*按照我们想的那样正常输出0,1,2,....,9*/
+
+        /*
+            //01.使用let 会给每个setTimeout 添加一个作用域，防止i 互相影响
+            for(let i=0;i<10;i++){setTimeout(function(){console.log(i),1000})}
+            */
+        /*
+            //02.去除时间，并且使用简写
+            for(var i=0;i<10;i++){
+                setTimeout(console.log(i))
+            }
+            */
+        /*
+            //03.定时器中直接自调 闭包
+            for (var i = 0; i < 10; i++) {
+            setTimeout(function (i) {
+            console.log(i);
+            }(i),1000);}
+            */
+
+        /* 
+          //04.利用 setTimeout，setInterval第三个参数,定时器启动时候，第三个以后的参数是作为第一个func()的参数传进去。定时器后可传入多个参数
+          //setTimout((a,b,c,d,e,f)=>{},1000,5,2,4,5,6,7,8)
+            for (var i = 0; i < 10; i++) {
+              setTimeout(function(i) {
+                  console.log(i);
+                },1000,i);
+            }
+          */
+
+        /*
+          //05.使用封装fn，每次for循环都调用一次
+          for (var i = 0; i < 10; i++) {
+              var forFn = function (i) {
+                  return function(){console.log(i)}
+              }
+              forFn(i)();
+          }
+          */
+
+          /*
+           //06.利用setTimeout定时器，每次调用定时器后，停止定时器 因为 i不通过条件
+           //解释:6-1.cleartime: 101cleartime: 102cleartime: 103
+           也就是说,虽然通过定时器传参避免了i共享, 
+           但是 var time 却共享,每次都是清除的ID 10, 
+           所以最后10没有打印出来.
+
+           //解释:6-2.这是因为for循环是同步的，而时间模块比如setTimeOut是异步的同步做完了异步可能还在处理中，
+           所以出来的结果会先前于之前的操作，
+           至于为什么不是1234...10是因为你每次清楚了下超时调用，
+           不满足条件退出循环最后输出123..9
+
+           for(var i=0;i<=10;i++){
+            var time=setTimeout(function(i){
+              clearTimeout(time);
+              console.log(i);
+            },1000,i)
+            }
+           */
+    </script>
+</body>
+
+</html>
